@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  apiKey: 'AIzaSyABHZ79sSTReRfyrhwKqPKcDJqj_7YTlIY',
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   databaseURL:
     'https://learnlingo-96e80-default-rtdb.europe-west1.firebasedatabase.app',
