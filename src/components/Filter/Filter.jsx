@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PRICE_HOURS } from '../../constans/constans';
 import { nanoid } from '@reduxjs/toolkit';
 import { Form, Wrapper } from './Filter.styled';
 import sprite from '../../assets/sprite.svg';
 
+const uniqueLanguages = [];
+const uniqueLevel = [];
+
 export const Filter = ({
   setFilteredTeachers,
   allTeachers,
   teachers,
-  uniqueLanguages,
-  uniqueLevel,
   setLoadMore,
   setLevelCss,
 }) => {
@@ -19,6 +20,34 @@ export const Filter = ({
   const [languageClick, setLanguageClick] = useState(null);
   const [priceClick, setPriceClick] = useState(null);
   const [levelClick, setLevelClick] = useState(null);
+  const [uniqueLanguages, setUniqueLanguages] = useState([]);
+  const [uniqueLevel, setUniqueLevel] = useState([]);
+
+  useEffect(() => {
+    const newUniqueLanguages = [];
+    const newUniqueLevel = [];
+
+    allTeachers.forEach((teacher) => {
+      if (teacher.languages) {
+        teacher.languages.forEach((language) => {
+          if (!newUniqueLanguages.includes(language)) {
+            newUniqueLanguages.push(language);
+          }
+        });
+      }
+      if (teacher.levels) {
+        teacher.levels.forEach((level) => {
+          if (!newUniqueLevel.includes(level)) {
+            newUniqueLevel.push(level);
+          }
+        });
+      }
+    });
+
+    setUniqueLanguages(newUniqueLanguages);
+    setUniqueLevel(newUniqueLevel);
+    console.log('1');
+  }, [allTeachers]);
 
   const handleLanguageChange = ({ target: { value } }) => {
     setLanguage(value);

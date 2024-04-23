@@ -23,10 +23,6 @@ const TeachersPage = () => {
   const [endIdx, setEndIdx] = useState('3');
   const [loadMore, setLoadMore] = useState(true);
   const [levelCss, setLevelCss] = useState(null);
-  const allLanguages = [];
-  const uniqueLanguages = [];
-  const allLevel = [];
-  const uniqueLevel = [];
 
   const fetchAllTeachers = () => {
     const dbRef = ref(getDatabase());
@@ -34,7 +30,6 @@ const TeachersPage = () => {
       .then((snapshot) => {
         if (snapshot.exists()) {
           setAllTeachers(snapshot.val());
-        } else {
         }
       })
       .catch((error) => {});
@@ -61,6 +56,7 @@ const TeachersPage = () => {
         setTeachers((prevState) => {
           return [...prevState, ...teacherData];
         });
+        console.log(teachers);
       },
       {
         onlyOnce: true,
@@ -81,24 +77,7 @@ const TeachersPage = () => {
     fetchTeachers(newStartIdx, newEndIdx);
   };
 
-  allTeachers.forEach((teacher) => {
-    if (teacher.languages) {
-      teacher.languages.forEach((language) => {
-        if (!uniqueLanguages.includes(language)) {
-          uniqueLanguages.push(language);
-        }
-        allLanguages.push(language);
-      });
-    }
-    if (teacher.levels) {
-      teacher.levels.forEach((level) => {
-        if (!uniqueLevel.includes(level)) {
-          uniqueLevel.push(level);
-        }
-        allLevel.push(level);
-      });
-    }
-  });
+  const showLoadMore = loadMore && teachers.length < 32;
 
   return (
     <Container>
@@ -107,8 +86,6 @@ const TeachersPage = () => {
           setFilteredTeachers={setFilteredTeachers}
           allTeachers={allTeachers}
           teachers={teachers}
-          uniqueLanguages={uniqueLanguages}
-          uniqueLevel={uniqueLevel}
           setLoadMore={setLoadMore}
           setLevelCss={setLevelCss}
         />
@@ -116,7 +93,7 @@ const TeachersPage = () => {
           teachers={filteredTeachers ? filteredTeachers : teachers}
           levelCss={levelCss}
         />
-        {loadMore && teachers.length < 30 && (
+        {showLoadMore && (
           <button className="btn-load" onClick={handleLoadMore}>
             Load More
           </button>

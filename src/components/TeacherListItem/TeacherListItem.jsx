@@ -222,7 +222,7 @@ export const TeacherListItem = ({ teacher, levelCss }) => {
           {!readMore && (
             <button
               className="btn-trial-lesson"
-              onClick={openModal(MODAL.BOOK)}
+              onClick={() => openModal(MODAL.BOOK)}
             >
               Book trial lesson
             </button>
