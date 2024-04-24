@@ -4,9 +4,6 @@ import { nanoid } from '@reduxjs/toolkit';
 import { Form, Wrapper } from './Filter.styled';
 import sprite from '../../assets/sprite.svg';
 
-const uniqueLanguages = [];
-const uniqueLevel = [];
-
 export const Filter = ({
   setFilteredTeachers,
   allTeachers,
