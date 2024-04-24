@@ -16,5 +16,6 @@ console.log('projectId', firebaseConfig.projectId);
 console.log('storageBucket', firebaseConfig.storageBucket);
 console.log('messagingSenderId', firebaseConfig.messagingSenderId);
 console.log('appId', firebaseConfig.appId);
+console.log('test');
 
 export const app = initializeApp(firebaseConfig);
