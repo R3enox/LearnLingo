@@ -56,7 +56,6 @@ const TeachersPage = () => {
         setTeachers((prevState) => {
           return [...prevState, ...teacherData];
         });
-        console.log(teachers);
       },
       {
         onlyOnce: true,

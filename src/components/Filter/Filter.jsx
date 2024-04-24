@@ -43,7 +43,6 @@ export const Filter = ({
 
     setUniqueLanguages(newUniqueLanguages);
     setUniqueLevel(newUniqueLevel);
-    console.log('1');
   }, [allTeachers]);
 
   const handleLanguageChange = ({ target: { value } }) => {
