@@ -1,19 +1,28 @@
 import styled from 'styled-components';
-import border from '../../assets/img/hero/rectangle.png';
 
 export const HeroWrapper = styled.section`
+  min-width: 320px;
+  max-width: 1440px;
+  width: 100%;
+
   .main-wrapper {
+    width: 100%;
     display: flex;
-    column-gap: 24px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
     margin-bottom: 24px;
   }
 
   .left-side {
-    display: flex;
-    flex-direction: column;
-    background-color: #f8f8f8;
-    padding: 98px 108px 98px 64px;
     border-radius: 30px;
+    display: block;
+    max-width: 720px;
+    padding: 98px 64px;
+    width: 100%;
+    background-color: #f8f8f8;
   }
 
   .main-title {
@@ -41,7 +50,11 @@ export const HeroWrapper = styled.section`
   }
 
   .right-side {
-    padding: 80px 89px 0 88px;
+    max-width: 568px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
     border-radius: 30px;
     background-color: #fbe9ba;
   }
@@ -54,21 +67,31 @@ export const HeroWrapper = styled.section`
     font-size: 18px;
     line-height: 1.56;
     max-width: 272px;
-    height: 60px;
     background-color: #f4c550;
 
     &:hover,
-    &focus {
+    &:focus {
+      transition-duration: 300ms;
       background-color: #ffdc86;
     }
   }
 
+  .hero-img {
+    width: 100%;
+    height: auto;
+    width: 100%;
+  }
+
   .hero-list {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     column-gap: 100px;
-    padding: 40px 122px 40px 123px;
+    row-gap: 10px;
+    padding: 40px 20px;
     border-radius: 30px;
-    background-image: url(${border});
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='30' ry='30' stroke='orange' stroke-width='1.5px' stroke-dasharray='14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
   }
 
   .hero-list {

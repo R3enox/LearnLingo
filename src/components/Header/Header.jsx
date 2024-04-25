@@ -19,6 +19,7 @@ import { selectAuthenticated } from '../../redux/auth/authSelectors';
 import { signOut as logOut } from '../../redux/auth/authSlice';
 import { getAuth, signOut } from 'firebase/auth';
 import { NavLink } from 'react-router-dom';
+import { toastSuccess } from '../../helpers/toast';
 
 export const Header = () => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -39,6 +40,9 @@ export const Header = () => {
     const auth = getAuth();
     signOut(auth);
     dispatch(logOut());
+    toastSuccess(
+      `You have been successfully logged out. Thank you for visiting our website. We look forward to welcoming you back soon!`
+    );
   };
 
   const MODAL = {
@@ -97,8 +101,13 @@ export const Header = () => {
           </PageWrapper>
           {isAuthenticated ? (
             <LogOutWrapper>
-              <Button onClick={() => removeUser()}>
-                <IconWrapper size={'20px'} stroke={'#F4C550'} fill={'none'}>
+              <Button className="btn-log-out" onClick={() => removeUser()}>
+                <IconWrapper
+                  className="svg-log-out"
+                  size={'20px'}
+                  stroke={'#F4C550'}
+                  fill={'none'}
+                >
                   <use href={`${sprite}#icon-log-in`} />
                 </IconWrapper>
                 Log Out
@@ -107,7 +116,12 @@ export const Header = () => {
           ) : (
             <AuthWrapper>
               <Button onClick={() => openModal(MODAL.LOGIN)}>
-                <IconWrapper size={'20px'} stroke={'#F4C550'} fill={'none'}>
+                <IconWrapper
+                  className="svg-log-in"
+                  size={'20px'}
+                  stroke={'#F4C550'}
+                  fill={'none'}
+                >
                   <use href={`${sprite}#icon-log-in`} />
                 </IconWrapper>
                 Log in

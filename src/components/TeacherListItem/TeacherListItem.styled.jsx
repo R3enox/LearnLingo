@@ -2,20 +2,22 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.li`
   display: flex;
+  flex-wrap: wrap;
   column-gap: 48px;
   padding: 24px;
   border-radius: 24px;
   background-color: #fff;
-  max-width: 1184px;
   width: 100%;
+  max-width: 1184px;
 
   .avatar {
-    width: 120x;
+    width: 120px;
     height: 120px;
     border-radius: 50%;
     padding: 12px;
     border: 3px solid #fbe9ba;
   }
+
   .svg-wrapper {
     position: relative;
   }
@@ -33,6 +35,7 @@ export const Wrapper = styled.li`
   }
   .right-side {
     width: 100%;
+    max-width: 968px;
   }
 
   .favorite-wrapper {
@@ -47,15 +50,16 @@ export const Wrapper = styled.li`
     display: flex;
     align-items: start;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 32px;
+    width: 100%;
   }
 
   .text-wrapper {
     display: flex;
     flex-direction: column;
     row-gap: 8px;
-    margin-right: 134px;
   }
 
   .desc {
@@ -76,10 +80,13 @@ export const Wrapper = styled.li`
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
     gap: 16px;
     font-weight: 500;
     font-size: 16px;
     line-height: 1.5;
+    max-width: 607px;
+    width: 100%;
   }
 
   .card-list-item:first-child,
@@ -111,7 +118,6 @@ export const Wrapper = styled.li`
   .btn-heart-wrapper {
     border: none;
     background-color: transparent;
-    margin-left: 45px;
   }
 
   .isFavHeart {
@@ -119,6 +125,12 @@ export const Wrapper = styled.li`
     height: 26px;
     fill: #f4c550;
     stroke: none;
+
+    &:hover,
+    &:focus {
+      transition-duration: 300ms;
+      transform: scale(1.2);
+    }
   }
 
   .isNotFavHeart {
@@ -126,6 +138,12 @@ export const Wrapper = styled.li`
     height: 26px;
     fill: none;
     stroke: #121417;
+
+    &:hover,
+    &:focus {
+      transition-duration: 300ms;
+      transform: scale(1.2);
+    }
   }
 
   .price {
@@ -164,11 +182,18 @@ export const Wrapper = styled.li`
     text-decoration: underline;
     text-decoration-skip-ink: none;
     margin-bottom: 32px;
+
+    &:hover,
+    &:focus {
+      transition-duration: 300ms;
+      color: #ffdc86;
+    }
   }
 
   .list-lang {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 8px;
     font-weight: 500;
     font-size: 14px;
@@ -229,6 +254,12 @@ export const Wrapper = styled.li`
     background-color: #f4c550;
     padding: 16px 48px;
     margin-top: 32px;
+
+    &:hover,
+    &:focus {
+      transition-duration: 300ms;
+      background-color: #ffdc86;
+    }
   }
 `;
 

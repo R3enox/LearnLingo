@@ -3,6 +3,7 @@ import { PRICE_HOURS } from '../../constans/constans';
 import { nanoid } from '@reduxjs/toolkit';
 import { Form, Wrapper } from './Filter.styled';
 import sprite from '../../assets/sprite.svg';
+import { toastSuccess } from '../../helpers/toast';
 
 export const Filter = ({
   setFilteredTeachers,
@@ -70,15 +71,14 @@ export const Filter = ({
           (lang) => lang.toLowerCase() === language.toLowerCase()
         )
       );
-      //   toastSuccess(`This is the ${brand} you've been looking for.`);
+      toastSuccess(`This is the ${language} you've been looking for.`);
     }
 
     if (price) {
       filteredTeachers = filteredTeachers.filter(
         (teacher) => teacher.price_per_hour <= Number(price)
       );
-
-      //   toastSuccess(`This is the ${price} you've been looking for.`);
+      toastSuccess(`This is the ${price} you've been looking for.`);
     }
 
     if (level) {
@@ -87,7 +87,7 @@ export const Filter = ({
       );
       setLevelCss(level);
 
-      //   toastSuccess(`This is the ${price} you've been looking for.`);
+      toastSuccess(`This is the ${level} you've been looking for.`);
     }
     setFilteredTeachers(filteredTeachers);
     setLoadMore(false);
@@ -100,102 +100,105 @@ export const Filter = ({
     setLevelCss('');
     setFilteredTeachers(teachers);
     setLoadMore(true);
-    // toastSuccess(`The filter's been cleaned successfully.`);
+    toastSuccess(`The filter's been cleaned successfully.`);
   };
 
   const isActive = language || price || level;
 
   return (
     <Form onSubmit={handleSubmit}>
-      <div className="label-wrapper lang-wrapper">
-        <label htmlFor="language">Languages</label>
-        <select
-          onFocus={() => setLanguageClick(true)}
-          onBlur={() => setLanguageClick(false)}
-          onChange={handleLanguageChange}
-          id="language"
-          value={language}
-        >
-          <option value="" key="default" defaultValue>
-            Enter the language
-          </option>
-          {uniqueLanguages?.map((language) => {
-            const id = nanoid();
-            return (
-              <option value={language} key={id}>
-                {language}
-              </option>
-            );
-          })}
-        </select>
-        <Wrapper $languageClick={languageClick}>
-          <button type="button" className="btn-wrapper">
-            <svg className="icon-chevron lang-chevron">
-              <use href={sprite + '#icon-chevron'}></use>
-            </svg>
-          </button>
-        </Wrapper>
+      <div className="search-wrapper">
+        <div className="label-wrapper lang-wrapper">
+          <label htmlFor="language">Languages</label>
+          <select
+            onFocus={() => setLanguageClick(true)}
+            onBlur={() => setLanguageClick(false)}
+            onChange={handleLanguageChange}
+            id="language"
+            value={language}
+          >
+            <option value="" key="default" defaultValue>
+              Enter the language
+            </option>
+            {uniqueLanguages?.map((language) => {
+              const id = nanoid();
+              return (
+                <option value={language} key={id}>
+                  {language}
+                </option>
+              );
+            })}
+          </select>
+          <Wrapper $languageClick={languageClick}>
+            <button type="button" className="btn-wrapper">
+              <svg className="icon-chevron lang-chevron">
+                <use href={sprite + '#icon-chevron'}></use>
+              </svg>
+            </button>
+          </Wrapper>
+        </div>
+
+        <div className="label-wrapper lang-wrapper">
+          <label htmlFor="level">Level of knowledge</label>
+          <select
+            onFocus={() => setLevelClick(true)}
+            onBlur={() => setLevelClick(false)}
+            onChange={handleLevelChange}
+            id="level"
+            value={level}
+          >
+            <option value="" defaultValue>
+              Enter the level
+            </option>
+            {uniqueLevel.map((level) => {
+              const id = nanoid();
+              return (
+                <option key={id} value={level}>
+                  {level}
+                </option>
+              );
+            })}
+          </select>
+          <Wrapper $levelClick={levelClick}>
+            <button type="button" className="btn-wrapper">
+              <svg className="icon-chevron level-chevron">
+                <use href={sprite + '#icon-chevron'}></use>
+              </svg>
+            </button>
+          </Wrapper>
+        </div>
+
+        <div className="label-wrapper price-wrapper">
+          <label htmlFor="price">Price/ 1hour</label>
+          <select
+            onFocus={() => setPriceClick(true)}
+            onBlur={() => setPriceClick(false)}
+            onChange={handlePriceChange}
+            id="price"
+            value={price}
+          >
+            <option value="" defaultValue>
+              To $
+            </option>
+            {PRICE_HOURS.map((value) => {
+              const id = nanoid();
+              return (
+                <option key={id} value={value}>
+                  {`${value} $`}
+                </option>
+              );
+            })}
+          </select>
+          <Wrapper $priceClick={priceClick}>
+            <button type="button" className="btn-wrapper">
+              <svg className="icon-chevron price-chevron">
+                <use href={sprite + '#icon-chevron'}></use>
+              </svg>
+            </button>
+          </Wrapper>
+        </div>
       </div>
 
-      <div className="label-wrapper lang-wrapper">
-        <label htmlFor="level">Level of knowledge</label>
-        <select
-          onFocus={() => setLevelClick(true)}
-          onBlur={() => setLevelClick(false)}
-          onChange={handleLevelChange}
-          id="level"
-          value={level}
-        >
-          <option value="" defaultValue>
-            Enter the level
-          </option>
-          {uniqueLevel.map((level) => {
-            const id = nanoid();
-            return (
-              <option key={id} value={level}>
-                {level}
-              </option>
-            );
-          })}
-        </select>
-        <Wrapper $levelClick={levelClick}>
-          <button type="button" className="btn-wrapper">
-            <svg className="icon-chevron level-chevron">
-              <use href={sprite + '#icon-chevron'}></use>
-            </svg>
-          </button>
-        </Wrapper>
-      </div>
-
-      <div className="label-wrapper price-wrapper">
-        <label htmlFor="price">Price/ 1hour</label>
-        <select
-          onFocus={() => setPriceClick(true)}
-          onBlur={() => setPriceClick(false)}
-          onChange={handlePriceChange}
-          id="price"
-          value={price}
-        >
-          <option value="" defaultValue>
-            To $
-          </option>
-          {PRICE_HOURS.map((value) => {
-            const id = nanoid();
-            return (
-              <option key={id} value={value}>
-                {`${value} $`}
-              </option>
-            );
-          })}
-        </select>
-        <Wrapper $priceClick={priceClick}>
-          <button type="button" className="btn-wrapper">
-            <svg className="icon-chevron price-chevron">
-              <use href={sprite + '#icon-chevron'}></use>
-            </svg>
-          </button>
-        </Wrapper>
-      </div>
       <div className="btn-wrapper">
         <button className="sbmt-btn" type="submit">
           Search

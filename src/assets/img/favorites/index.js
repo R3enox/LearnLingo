@@ -1,3 +1,6 @@
-import favoritesImg from './favorites.png';
+import girlPng from './girl.png';
+import girlPng2 from './girl@2x.png';
+import girlWeb from './girl.webp';
+import girlWeb2 from './/girl@2x.webp';
 
-export { favoritesImg };
+export { girlPng, girlPng2, girlWeb, girlWeb2 };

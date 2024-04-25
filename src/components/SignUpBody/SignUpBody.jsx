@@ -5,6 +5,7 @@ import { Body } from './SignUpBody.styled';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { toastError, toastSuccess } from '../../helpers/toast';
 
 const SignUpSchema = Yup.object().shape({
   name: Yup.string()
@@ -42,14 +43,20 @@ export const SignUpBody = ({ closeModal }) => {
             .then(({ user }) => {
               const newUser = {
                 name: name,
-                email: user.email,
+                email: user.email.toLocaleLowerCase(),
                 token: user.accessToken,
               };
               dispatch(setUser(newUser));
+              toastSuccess(
+                'Congratulations! You have successfully registered. Welcome to our community! Start exploring and enjoy all the benefits of being a member.'
+              );
             })
             .catch((error) => {
               const errorCode = error.code;
               const errorMessage = error.message;
+              toastError(
+                `errorCode, ${errorCode}, errorMessage, ${errorMessage}`
+              );
             });
           resetForm();
           closeModal();

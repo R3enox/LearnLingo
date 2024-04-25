@@ -3,9 +3,18 @@ import styled from 'styled-components';
 export const Form = styled.form`
   display: flex;
   justify-content: center;
-  column-gap: 18px;
+  flex-wrap: wrap;
+  gap: 18px;
   align-items: end;
   margin-bottom: 50px;
+
+  .search-wrapper {
+    position: static;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
 
   .label-wrapper {
     display: flex;
@@ -14,7 +23,7 @@ export const Form = styled.form`
   }
 
   .lang-wrapper {
-    width: 224px;
+    width: 244px;
   }
 
   .price-wrapper {
@@ -45,8 +54,11 @@ export const Form = styled.form`
 
   .btn-wrapper {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
-    column-gap: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .sbmt-btn,
@@ -64,6 +76,7 @@ export const Form = styled.form`
 
   .rest-btn[disabled] {
     opacity: 0.5;
+    cursor: auto;
   }
 
   .sbmt-btn,
@@ -72,7 +85,9 @@ export const Form = styled.form`
   }
 
   .sbmt-btn:hover,
-  .sbmt-btn:focus {
+  .rest-btn:hover,
+  .sbmt-btn:focus,
+  .rest-btn:focus {
     background-color: #ffdc86;
   }
 
@@ -81,7 +96,7 @@ export const Form = styled.form`
     font-size: 18px;
     line-height: 1.11;
     color: rgba(18, 20, 23, 0.2);
-    padding: 8px; /* Внутренний отступ */
+    padding: 8px;
   }
 
   option:checked {

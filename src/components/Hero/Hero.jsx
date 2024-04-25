@@ -26,7 +26,21 @@ export const Hero = () => {
           </button>
         </div>
         <div className="right-side">
-          <img srcSet={imgHero.heroImg} alt="Girl with Notebook" />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={`${imgHero.heroImgWeb} 1x, ${imgHero.heroImgWeb2} 2x`}
+            />
+            <source
+              type="image/png"
+              srcSet={`${imgHero.heroImgPng} 1x, ${imgHero.heroImgPng2} 2x`}
+            />
+            <img
+              className="hero-img"
+              srcSet={imgHero.heroImgPng}
+              alt="Girl with Notebook"
+            />
+          </picture>
         </div>
       </div>
       <ul className="hero-list">

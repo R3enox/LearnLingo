@@ -4,12 +4,16 @@ export const Wrapper = styled.footer`
   display: flex;
   gap: 15px;
   justify-content: center;
-  /* align-items: center; */
   margin: 0 auto;
   padding: 20px 128px;
   max-width: 1440px;
 
   .link {
+    &:hover,
+    &:focus {
+      transition-duration: 300ms;
+      color: #ffdc86;
+    }
   }
 
   .footer-title {
@@ -30,11 +34,23 @@ export const Wrapper = styled.footer`
     width: 45px;
     height: 45px;
     fill: #2ca5e0;
+
+    &:hover,
+    &:focus {
+      transition-duration: 300ms;
+      transform: scale(1.2);
+    }
   }
 
   .svg-linkedin {
     width: 45px;
     height: 45px;
     fill: #0077b5;
+
+    &:hover,
+    &:focus {
+      transition-duration: 300ms;
+      transform: scale(1.2);
+    }
   }
 `;

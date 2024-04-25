@@ -12,7 +12,21 @@ const FavoritesPage = () => {
       <section className="favorites-section">
         {favoritesTeachers.length === 0 ? (
           <>
-            <img srcSet={imgFavorite.favoritesImg} alt="Girl" />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet={`${imgFavorite.girlWeb} 1x, ${imgFavorite.girlWeb2} 2x`}
+              />
+              <source
+                type="image/png"
+                srcSet={`${imgFavorite.girlPng} 1x, ${imgFavorite.girlPng2} 2x`}
+              />
+              <img
+                className="favorite-img"
+                srcSet={imgFavorite.girlPng}
+                alt="Girl"
+              />
+            </picture>
             <h1>You haven't added any teachers to your favorites.</h1>
           </>
         ) : (

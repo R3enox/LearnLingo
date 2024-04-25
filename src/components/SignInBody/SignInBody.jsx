@@ -5,6 +5,7 @@ import { Body } from './SignInBody.styled';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
+import {toastSuccess, toastWarn } from '../../helpers/toast';
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -36,7 +37,7 @@ export const SignInBody = ({ closeModal }) => {
           signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
               const newUser = {
-                email: user.email,
+                email: user.email.toLocaleLowerCase(),
                 id: user.uid,
                 token: user.accessToken,
               };
@@ -45,10 +46,14 @@ export const SignInBody = ({ closeModal }) => {
               resetForm();
               closeModal();
               navigate('/');
+              toastSuccess(
+                `Welcome back! You have successfully logged in to our website.`
+              );
             })
-            .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
+            .catch(() => {
+              toastWarn(
+                'Sorry, the email or password you entered is incorrect. Please double-check your credentials and try again.'
+              );
             });
 
           resetForm();

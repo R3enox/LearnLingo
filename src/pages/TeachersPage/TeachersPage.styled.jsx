@@ -1,14 +1,13 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin: 0 auto;
   background-color: #f8f8f8;
   padding: 96px 0;
+  min-width: 320px;
   max-width: 1440px;
   border-radius: 30px;
+  min-height: 80vh;
 
   .section-teachers {
     display: flex;
@@ -25,6 +24,21 @@ export const Container = styled.div`
     background-color: #f4c550;
     border: none;
     margin-top: 64px;
+    outline: none;
+
+    &:hover,
+    &:focus {
+      transition: 300ms;
+      background-color: #ffdc86;
+    }
+
+    .title-not-teacher {
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 1.17%;
+      letter-spacing: -0.02em;
+      color: #121417;
+    }
   }
 `;
 

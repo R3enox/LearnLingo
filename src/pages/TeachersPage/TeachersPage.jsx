@@ -76,7 +76,7 @@ const TeachersPage = () => {
     fetchTeachers(newStartIdx, newEndIdx);
   };
 
-  const showLoadMore = loadMore && teachers.length < 32;
+  const showLoadMore = teachers.length !== 30;
 
   return (
     <Container>
@@ -92,6 +92,13 @@ const TeachersPage = () => {
           teachers={filteredTeachers ? filteredTeachers : teachers}
           levelCss={levelCss}
         />
+
+        {!filteredTeachers ||
+          (filteredTeachers.length === 0 && (
+            <h2 className="title-not-teacher">
+              Behind such filters, no teacher is found.
+            </h2>
+          ))}
         {showLoadMore && (
           <button className="btn-load" onClick={handleLoadMore}>
             Load More

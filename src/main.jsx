@@ -6,11 +6,13 @@ import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
 import './firebase/firebase.js';
 import { App } from './App.jsx';
+import { ToastContainer } from 'react-toastify';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter basename="/LearnLingo">
     <Provider store={store}>
       <PersistGate persistor={persistor}>
+        <ToastContainer />
         <App />
       </PersistGate>
     </Provider>
